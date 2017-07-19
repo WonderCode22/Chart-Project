@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+
+    <head>
+        <title>Mortgage Prioritization</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     
+        <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+        <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+        <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
+        <script src="https://code.highcharts.com/mapdata/countries/us/custom/us-dc-congress-113.js"></script>
+  
+ 
+    </head>
+    <body>
+       
+        
+        <div id="container" style="height: 600px; min-width: 510px; max-width: 100%; margin: 0 auto"></div>
+
+<script src="data.js"></script>
+<script>
+        
+    function convert_state(name, to) {
+    var name = name.toUpperCase();
+    var states = new Array(                         {'name':'Alabama', 'abbrev':'AL'},          {'name':'Alaska', 'abbrev':'AK'},
+        {'name':'Arizona', 'abbrev':'AZ'},          {'name':'Arkansas', 'abbrev':'AR'},         {'name':'California', 'abbrev':'CA'},
+        {'name':'Colorado', 'abbrev':'CO'},         {'name':'Connecticut', 'abbrev':'CT'},      {'name':'Delaware', 'abbrev':'DE'},
+        {'name':'Florida', 'abbrev':'FL'},          {'name':'Georgia', 'abbrev':'GA'},          {'name':'Hawaii', 'abbrev':'HI'},
+        {'name':'Idaho', 'abbrev':'ID'},            {'name':'Illinois', 'abbrev':'IL'},         {'name':'Indiana', 'abbrev':'IN'},
+        {'name':'Iowa', 'abbrev':'IA'},             {'name':'Kansas', 'abbrev':'KS'},           {'name':'Kentucky', 'abbrev':'KY'},
+        {'name':'Louisiana', 'abbrev':'LA'},        {'name':'Maine', 'abbrev':'ME'},            {'name':'Maryland', 'abbrev':'MD'},
+        {'name':'Massachusetts', 'abbrev':'MA'},    {'name':'Michigan', 'abbrev':'MI'},         {'name':'Minnesota', 'abbrev':'MN'},
+        {'name':'Mississippi', 'abbrev':'MS'},      {'name':'Missouri', 'abbrev':'MO'},         {'name':'Montana', 'abbrev':'MT'},
+        {'name':'Nebraska', 'abbrev':'NE'},         {'name':'Nevada', 'abbrev':'NV'},           {'name':'New Hampshire', 'abbrev':'NH'},
+        {'name':'New Jersey', 'abbrev':'NJ'},       {'name':'New Mexico', 'abbrev':'NM'},       {'name':'New York', 'abbrev':'NY'},
+        {'name':'North Carolina', 'abbrev':'NC'},   {'name':'North Dakota', 'abbrev':'ND'},     {'name':'Ohio', 'abbrev':'OH'},
+        {'name':'Oklahoma', 'abbrev':'OK'},         {'name':'Oregon', 'abbrev':'OR'},           {'name':'Pennsylvania', 'abbrev':'PA'},
+        {'name':'Rhode Island', 'abbrev':'RI'},     {'name':'South Carolina', 'abbrev':'SC'},   {'name':'South Dakota', 'abbrev':'SD'},
+        {'name':'Tennessee', 'abbrev':'TN'},        {'name':'Texas', 'abbrev':'TX'},            {'name':'Utah', 'abbrev':'UT'},
+        {'name':'Vermont', 'abbrev':'VT'},          {'name':'Virginia', 'abbrev':'VA'},         {'name':'Washington', 'abbrev':'WA'},
+        {'name':'West Virginia', 'abbrev':'WV'},    {'name':'Wisconsin', 'abbrev':'WI'},        {'name':'Wyoming', 'abbrev':'WY'},
+        {'name':'District of Columbia', 'abbrev':'DC'}, {'name':'Puerto Rico', 'abbrev':'PR'}
+     
+        );
+    var returnthis = false;
+    $.each(states, function(index, value){
+        if (to == 'name') {
+            if (value.abbrev == name){
+                returnthis = value.name;
+                return false;
+            }
+        } else if (to == 'abbrev') {
+            if (value.name.toUpperCase() == name){
+                returnthis = value.abbrev.toUpperCase();
+                return false;
+            }
+        } else{
+            
+           returnthis = value; 
+        }
+    });
+    return returnthis;
+}
+    
+    
+    
+    $(function () {
+
+
+
+
+    //  $.ajax({
+
+        //    url:"data/data.txt",
+        //    type:"GET",
+        //    dataType:"text",
+        //    success:function(response){
+              
+        //     var data=$.parseJSON(response);
+           
+        // Make codes uppercase to match the map data
+         
+        $.each(data, function (i,val) {
+          
+            //this.name=this["hc-key"];
+           console.log(this["hc-key"],"us-"+convert_state(this["hc-key"], "abbrev"))
+            this["hc-key"] = "us-"+convert_state(this["hc-key"], "abbrev").toLowerCase();
+            this.value1=Number(this.value1)
+            //this.value2=Number(this.value2)
+            this.value=this.value1;
+      
+        });
+        
+        data=JSON.parse(JSON.stringify(data));
+        data.push({"hc-key":"pr", "value":0,"value1":0,"value2":0});
+        console.log(data)
+        // Instanciate the map
+        $('#container').highcharts('Map', {
+
+            chart : {
+                borderWidth : 1,
+                events: {
+                                load: function () {
+                                    var legend_items=document.getElementsByClassName("highcharts-legend-item highcharts-undefined-series highcharts-color-undefined highcharts-series-undefined");
+                                    var chart_legend = document.getElementsByClassName("highcharts-legend")[0];
+                                    var place=chart_legend.getAttribute("transform");
+                                    var temp1 = place.substring(place.indexOf('(')+1,place.indexOf(')')).split(',');
+                                    
+                                    ty = parseInt(place.split(",")[1])+50;
+                                    var replace = 'translate('+parseInt(temp1[0])+','+ty+')';
+                                       
+                                    var str1=chart_legend.outerHTML;
+                                    
+                                    str1 = str1.replace(place,replace);
+                                    chart_legend.outerHTML = str1;
+                                    // var matrix = legend_items[0].transform.baseVal.getItem(0).matrix;
+                                    // matrix = matrix.translate(100, 10);
+                                    
+                                    // legend_items[0].transform.baseVal.getItem(0).setMatrix(matrix);
+
+                                    for( i = 0; i<legend_items.length; i++)
+                                    {
+                                        
+                                        var str_place=legend_items[i].getAttribute("transform");
+                                        // console.log(str_place);
+                                        var temp = str_place.substring(str_place.indexOf('(')+1,str_place.indexOf(')')).split(',');
+                                        var tx;
+                                        var ty;
+                                        if(i>2)
+                                        {
+                                            tx = parseInt(temp[0]) + 100;
+                                            var str_place1=legend_items[i-3].getAttribute("transform").substring(str_place.indexOf('(')+1,str_place.indexOf(')'));
+                                            if(str_place1.indexOf(')') != -1)
+                                            {
+                                                str_place1 = str_place1.substring(0,str_place1.indexOf(')'));
+                                            }
+                                            ty = parseInt(str_place1.split(",")[1]);
+                                            
+                                        }
+                                        else
+                                        {
+                                            tx = parseInt(temp[0]);
+                                            ty = parseInt(temp[1]);
+                                        }
+                                        
+                                        var replace_str = 'translate('+tx+','+ty+')';
+                                        // console.log(replace_str);                                       
+                                        var str=legend_items[i].outerHTML;
+                                        // console.log(str);
+                                        str = str.replace(str_place,replace_str);
+                                        // console.log(str);
+                                        legend_items[i].outerHTML = str;
+                                        // legend_items[0].setAttribute("transform", "translate(258,23)");
+                                        
+                                        // legend_items[0].style.webkitTransform = "rotate(-2deg)";
+                                        
+                                        // console.log(legend_items[0]);
+                                    }
+                                }
+                            }
+            },
+
+            title : {
+                text : 'Change in Mortgage Prioritization Ratings, 2008-2015 vs. 1999-2007',
+                style:{"textAlign":"left", "fontSize": "24px" }
+            },
+
+
+            // legend: {
+
+            //     layout: 'horizontal',
+            //     borderWidth: 0,
+            //     backgroundColor: 'rgba(255,255,255,0.85)',
+            //     floating: true,
+            //     verticalAlign: 'top',
+            //     y:40
+
+            // },
+             legend: {
+                title: {
+                    text: '',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                    }
+                },
+                
+                layout: 'vertical',
+                verticalAlign: 'top',
+                floating: false,
+                valueDecimals: 0,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255, 255, 255, 0.85)',
+                symbolRadius: 0,
+                symbolHeight: 14
+            },
+            mapNavigation: {
+                enabled: true,
+                            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+            },
+
+            colorAxis: {
+                // min: 0,
+                //type: 'logarithmic',
+                //#9C1E2D #BF695E #D0993C #EDD5A1
+                // minColor: '#b7172a',
+                // maxColor: '#f6d5a0',
+                minColor: '#b7182a',
+                maxColor:'#f6d5a0',
+                stops: [
+                    [0, '#f6d5a0'],
+                   
+                    [40, '#b7172a']
+                ],
+                dataClasses: [{
+                    name: '0 to 10',
+                    from: 17,
+                    to: 32,
+                    color: '#b7182a',
+                    
+                }, {
+                    name: '10 to 20',
+                    from: 32,
+                    to: 40,
+                    color:"#d44443"
+                }, {
+                    name: '20 to 30',
+                    from: 40,
+                    to: 45,
+                    color:"#d9695d"
+                    
+                }, {
+                    name: '30 to 40',
+                    from: 45,
+                    to: 48,
+                    color: "#e39a31"
+                     
+                }, {
+                    name: '40 to 50',
+                    from: 48,
+                    to: 50,
+                    color:"#eab66a"
+                }, {
+                    name: '50 to 60',
+                    from: 50,
+                    to: 55
+                }]
+            },
+           
+            series : [{
+                animation: {
+                    duration: 1000
+                },
+                data : data,
+                mapData: Highcharts.maps['countries/us/us-all'],
+                joinBy: ["hc-key"],
+                dataLabels: {
+                    enabled: true,
+                    color: '#FFFFFF',
+                    //format:'{point.name}',
+                   formatter: function(){
+                                //if(this.key === "District of Columbia")
+                                //    return this.key;
+           	 	}
+                },
+                name: 'State',
+                tooltip: {
+                    pointFormat: '{point.name}: {point.value1}, {point.value2}'
+                }
+            }, {
+            name: 'Separators',
+            type: 'mapline',
+            // data: Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
+            color: 'silver',
+            showInLegend: false,
+            enableMouseTracking: false
+        }
+	        
+        
+        
+        ]
+        });
+             
+});
+    
+
+    
+
+    
+    </script>
+        
+    </body>
+</html>

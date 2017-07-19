@@ -1,0 +1,308 @@
+[ 
+	{
+	"hc-key" : "Alabama",
+	"value1" : "-0.48",
+	"value2" : "AL"
+	},
+
+	{
+	"hc-key" : "Alaska",
+	"value1" : "-0.489",
+	"value2" : "AK"
+	},
+
+	{
+	"hc-key" : "Arizona",
+	"value1" : "-1.06",
+	"value2" : "AZ"
+	},
+
+	{
+	"hc-key" : "Arkansas",
+	"value1" : "-0.07",
+	"value2" : "AR"
+	},
+
+	{
+	"hc-key" : "California",
+	"value1" : "-1.24",
+	"value2" : "CA"
+	},
+
+	{
+	"hc-key" : "Colorado",
+	"value1" : "-0.54",
+	"value2" : "CO"
+	},
+
+	{
+	"hc-key" : "Connecticut",
+	"value1" : "-0.97",
+	"value2" : "CT"
+	},
+
+	{
+	"hc-key" : "Delaware",
+	"value1" : "-0.67",
+	"value2" : "DE"
+	},
+
+	{
+	"hc-key" : "Florida",
+	"value1" : "-1.23",
+	"value2" : "FL"
+	},
+
+	{
+	"hc-key" : "Georgia",
+	"value1" : "-0.66",
+	"value2" : "GA"
+	},
+
+	{
+	"hc-key" : "Hawaii",
+	"value1" : "-1.21",
+	"value2" : "HI"
+	},
+
+	{
+	"hc-key" : "Idaho",
+	"value1" : "-0.40",
+	"value2" : "ID"
+	},
+
+	{
+	"hc-key" : "Illinois",
+	"value1" : "-0.67",
+	"value2" : "IL"
+	},
+
+	{
+	"hc-key" : "Indiana",
+	"value1" : "-0.37",
+	"value2" : "IN"
+	},
+
+	{
+	"hc-key" : "Iowa",
+	"value1" : "-0.40",
+	"value2" : "IA"
+	},
+
+	{
+	"hc-key" : "Kansas",
+	"value1" : "-0.52",
+	"value2" : "KS"
+	},
+
+	{
+	"hc-key" : "Kentucky",
+	"value1" : "-0.28",
+	"value2" : "KY"
+	},
+
+	{
+	"hc-key" : "Louisiana",
+	"value1" : "-0.51",
+	"value2" : "LA"
+	},
+
+	{
+	"hc-key" : "Maine",
+	"value1" : "-0.82",
+	"value2" : "ME"
+	},
+
+	{
+	"hc-key" : "Maryland",
+	"value1" : "-1.09",
+	"value2" : "MD"
+	},
+
+{
+	"hc-key" : "Massachusetts",
+	"value1" : "-.97",
+	"value2" : "MA"
+	},
+
+	{
+	"hc-key" : "Michigan",
+	"value1" : "-0.71",
+	"value2" : "MI"
+	},
+
+	{
+	"hc-key" : "Minnesota",
+	"value1" : "-0.70",
+	"value2" : "MN"
+	},
+
+	{
+	"hc-key" : "Mississippi",
+	"value1" : "-0.31",
+	"value2" : "MS"
+	},
+
+	{
+	"hc-key" : "Missouri",
+	"value1" : "-0.40",
+	"value2" : "MO"
+	},
+
+	{
+	"hc-key" : "Montana",
+	"value1" : "-0.41",
+	"value2" : "MT"
+	},
+
+	{
+	"hc-key" : "Nebraska",
+	"value1" : "-0.01",
+	"value2" : "NE"
+	},
+
+	{
+	"hc-key" : "Nevada",
+	"value1" : "-1.52",
+	"value2" : "NV"
+	},
+
+	{
+	"hc-key" : "New Hampshire",
+	"value1" : "-0.82",
+	"value2" : "NH"
+	},
+
+	{
+	"hc-key" : "New Jersey",
+	"value1" : "-1.03",
+	"value2" : "NJ"
+	},
+
+	{
+	"hc-key" : "New Mexico",
+	"value1" : "-0.31",
+	"value2" : "NM"
+	},
+
+	{
+	"hc-key" : "New York",
+	"value1" : "-0.68",
+	"value2" : "NY"
+	},
+
+	{
+	"hc-key" : "South Carolina",
+	"value1" : "2",
+	"value2" : "SD"
+	},
+
+	{
+	"hc-key" : "North Dakota",
+	"value1" : "-0.33",
+	"value2" : "NC"
+	},
+
+	{
+	"hc-key" : "Ohio",
+	"value1" : "-0.49",
+	"value2" : "OH"
+	},
+
+	{
+	"hc-key" : "Oklahoma",
+	"value1" : "-0.47",
+	"value2" : "OK"
+	},
+
+	{
+	"hc-key" : "Oregon",
+	"value1" : "-0.94",
+	"value2" : "OR"
+	},
+
+	{
+	"hc-key" : "Pennsylvania",
+	"value1" : "-0.43",
+	"value2" : "PA"
+	},
+
+	{
+	"hc-key" : "Rhode Island",
+	"value1" : "-1.12",
+	"value2" : "RI"
+	},
+
+	{
+	"hc-key" : "North Carolina",
+	"value1" : "-0.33",
+	"value2" : "NC"
+	},
+
+	{
+	"hc-key" : "South Dakota",
+	"value1" : "0.69",
+	"value2" : "SD"
+	},
+
+	{
+	"hc-key" : "Tennessee",
+	"value1" : "-0.30",
+	"value2" : "TN"
+	},
+
+	{
+	"hc-key" : "Texas",
+	"value1" : "-0.23",
+	"value2" : "TX"
+	},
+
+	{
+	"hc-key" : "Utah",
+	"value1" : "-0.75",
+	"value2" : "UT"
+	},
+
+	{
+	"hc-key" : "Vermont",
+	"value1" : "-1.14",
+	"value2" : "VT"
+	},
+
+	{
+	"hc-key" : "Virginia",
+	"value1" : "-0.68",
+	"value2" : "VA"
+	},
+
+	{
+	"hc-key" : "Washington",
+	"value1" : "-0.91",
+	"value2" : "WA"
+	},
+
+	{
+	"hc-key" : "West Virginia",
+	"value1" : "-0.25",
+	"value2" : "WV"
+	},
+
+	{
+	"hc-key" : "Wisconsin",
+	"value1" : "-0.76",
+	"value2" : "WI"
+	},
+
+	{
+	"hc-key" : "Wyoming",
+	"value1" : "-0.55",
+	"value2" : "WY"
+	},
+
+	{
+	"hc-key" : "District of Columbia",
+	"value1" : "-1.59",
+	"value2" : "DC"
+	}
+
+]
